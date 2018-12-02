@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Сенките на София</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href="css/OSMBuildings.css" rel="stylesheet" type="text/css" />
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+  <body>
+  <div id="map"></div>
+
+  <div class="time-control">
+    <span class = "control-label">Дата:</span>
+    <input id="date" type="range" min="1" max="365" step="1"><label for="date"></label> <br />
+
+    <span class = "control-label">Час: </span>
+    <input id="time" type="range" min="0" max="23" step="1"><label for="time"></label>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/suncalc.min.js" type="text/javascript"></script>
+
+  <script src="js/OSMBuildings.js" type="text/javascript"></script>
+  <script src="js/code.js"></script>
+</body>
+</html>
