@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="description" content="Shadow maps.">
+  <title>Cesium Demo</title>
+</head>
+<body data-sandcastle-bucket="bucket-requirejs.html">
+  <script src="/js/suncalc.min.js" type="text/javascript"></script>
+  <script src="node_modules/cesium/Build/CesiumUnminified/Cesium.js"></script>
+  <script src="js/cesium.js"></script>
+  <style>
+    @import url(node_modules/cesium/Build/CesiumUnminified/Widgets/widgets.css);
+  </style>
+
+  <div id="cesiumContainer" class="fullSize"></div>
+  <div id="toolbar"></div>
+
+  <script id="cesium_sandcastle_script">
+    if (typeof Cesium !== 'undefined') {
+        startup(Cesium);
+    } else if (typeof require === 'function') {
+        require(['Cesium'], startup);
+    }
+  </script>
+</body>
+</html>
