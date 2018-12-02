@@ -36,7 +36,16 @@ var
     now,
     date, time,
     timeRange, dateRange,
-    timeRangeLabel, dateRangeLabel;
+    timeRangeLabel, dateRangeLabel,
+    sunrise, sunset;
+
+function relativePosInTheDay(time) {
+    return (time.getHours() * 60 + time.getMinutes()) / (24 * 60);
+}
+
+function formatTime(time) {
+    return pad(time.getHours()) + ":" + pad(time.getMinutes());
+}
 
 function changeDate() {
     var Y = now.getFullYear(),
@@ -49,6 +58,17 @@ function changeDate() {
     dateRangeLabel.innerText = Y + '-' + pad(M + 1) + '-' + pad(D);
 
     osmb.setDate(new Date(Y, M, D, h, m));
+
+    var times = SunCalc.getTimes(now, sofiaCityCenter.latitude, sofiaCityCenter.longitude);
+    var markersRange = timeRange.offsetWidth;
+    var sunriseMarkerPos = markersRange * relativePosInTheDay(times.sunrise);
+    var sunsetMarkerPos = markersRange * relativePosInTheDay(times.sunset);
+
+    sunriseMarker.style.left = Math.floor(sunriseMarkerPos) + "px";
+    sunsetMarker.style.left = Math.floor(sunsetMarkerPos) + "px";
+
+    sunriseMarker.innerHTML = "<div>" + "Изгрев " + formatTime(times.sunrise) + "</div>";
+    sunsetMarker.innerHTML = "<div>" + "Залез " + formatTime(times.sunset) + "</div>";
 }
 
 function onTimeChange() {
@@ -69,6 +89,8 @@ function pad(v) {
 
 timeRange = document.getElementById('time');
 dateRange = document.getElementById('date');
+sunriseMarker = document.getElementById('sunrise-marker');
+sunsetMarker = document.getElementById('sunset-marker');
 timeRangeLabel = document.querySelector('*[for=time]');
 dateRangeLabel = document.querySelector('*[for=date]');
 
